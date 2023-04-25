@@ -1,4 +1,4 @@
-package com.sunbe85.apcsfinal;
+package com.sunbe85.apcsfinal.classes;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
