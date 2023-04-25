@@ -38,10 +38,8 @@ public class Main extends Application {
     }
 
     public class RedrawTimer extends AnimationTimer {
-
         public void handle(long now) {
             GraphicsContext gc = canvas.getGraphicsContext2D();
-            //update, draw and collide all of the Game Elements in the GameState object
         }
     }
 }
