@@ -2,7 +2,6 @@ package com.sunbe85.apcsfinal;
 
 import javafx.application.Application;
 import javafx.animation.AnimationTimer;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -20,7 +19,6 @@ public class Main extends Application {
     private static Canvas canvas;
     RedrawTimer timer = new RedrawTimer();
     @Override
-    @SuppressWarnings("deprecation")
     public void start(Stage stage) throws IOException {
         StackPane root = new StackPane();
         canvas = new Canvas(WIDTH, HEIGHT);
@@ -29,6 +27,7 @@ public class Main extends Application {
         stage.setTitle("Monopoly: \"Own It All\"");
         stage.getIcons().add(new Image("com/sunbe85/apcsfinal/images/png/dice-white.png"));
         stage.setScene(scene);
+        stage.setMaximized(true);
         stage.show();
         timer.start();
     }
