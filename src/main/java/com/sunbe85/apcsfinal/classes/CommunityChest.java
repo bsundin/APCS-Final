@@ -4,6 +4,10 @@ import javafx.scene.canvas.Canvas;
 
 public class CommunityChest extends Card {
 
+    public CommunityChest(String title, String content) {
+        super(title, content);
+    }
+
     @Override
     public void draw(Canvas cs) {
 
