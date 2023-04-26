@@ -7,12 +7,17 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
+
+import static javafx.scene.input.KeyCombination.ALT_DOWN;
 
 public class Main extends Application {
 
@@ -30,6 +35,9 @@ public class Main extends Application {
         stage.getIcons().add(new Image("com/sunbe85/apcsfinal/images/png/dice-white.png"));
         stage.setScene(scene);
         stage.setFullScreen(true);
+        stage.setFullScreenExitHint("Press Alt + F4 to close window at any time");
+        KeyCombination k = new KeyCodeCombination(KeyCode.F4, KeyCombination.ALT_DOWN);
+        stage.setFullScreenExitKeyCombination(k);
         stage.show();
         timer.start();
     }
