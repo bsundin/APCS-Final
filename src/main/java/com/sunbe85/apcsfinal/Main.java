@@ -25,6 +25,8 @@ public class Main extends Application {
     private static final int HEIGHT = 1080;
     private static Canvas canvas;
     RedrawTimer timer = new RedrawTimer();
+
+    private Monopoly game;
     @Override
     public void start(Stage stage) throws IOException {
         StackPane root = new StackPane();
@@ -38,20 +40,18 @@ public class Main extends Application {
         stage.setFullScreenExitHint("Press Alt + F4 to close window at any time");
         KeyCombination k = new KeyCodeCombination(KeyCode.F4, KeyCombination.ALT_DOWN);
         stage.setFullScreenExitKeyCombination(k);
+        game = new Monopoly(canvas);
         stage.show();
         timer.start();
     }
 
     public static void main(String[] args) {
         launch(args);
-        Monopoly game = new Monopoly();
     }
 
     public class RedrawTimer extends AnimationTimer {
         public void handle(long now) {
-            GraphicsContext gc = canvas.getGraphicsContext2D();
-            gc.setFill(Color.RED);
-            gc.fillRect(0,0,100,100);
+            game.drawAll();
         }
     }
 }

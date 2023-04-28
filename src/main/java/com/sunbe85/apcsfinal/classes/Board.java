@@ -22,10 +22,18 @@ public class Board extends GameElement implements Renderable {
 
     private final Color[] color = {null, Color.BROWN, null, Color.BROWN, null, null, Color.LIGHTBLUE, null, Color.LIGHTBLUE, Color.LIGHTBLUE, null, Color.MAGENTA, null, Color.MAGENTA, Color.MAGENTA, null, Color.ORANGE, null, Color.ORANGE, Color.ORANGE, null, Color.RED, null, Color.RED, Color.RED, null, Color.YELLOW, Color.YELLOW, null, Color.YELLOW, null, Color.GREEN, Color.GREEN, null, Color.GREEN, null, null, Color.BLUE, null, Color.BLUE};
 
+    private final int[] row = {10,10,10,10,10,10,10,10,10,10,10,9,8,7,6,5,4,3,2,1,0,0,0,0,0,0,0,0,0,0,0,1,2,3,4,5,6,7,8,9};
+
+    private final int[] col = {10,9,8,7,6,5,4,3,2,1,0,0,0,0,0,0,0,0,0,0,0,1,2,3,4,5,6,7,8,9,10,10,10,10,10,10,10,10,10,10};
+
     public Board() {
         for (int i = 0; i < 40; i++) {
-
+            squares.add(new BoardSquare());
         }
+    }
+
+    private double calcPos(int n) {
+        return n * 98;
     }
     @Override
     public void draw(Canvas cs) {
