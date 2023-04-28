@@ -19,14 +19,54 @@ import java.io.IOException;
 
 import static javafx.scene.input.KeyCombination.ALT_DOWN;
 
+/**
+ * The main class. Initializes the window and creates the Monopoly object.
+ */
 public class Main extends Application {
 
+    /**
+     * The display width
+     */
     private static final int WIDTH = 1920;
+    /**
+     * The display height
+     */
     private static final int HEIGHT = 1080;
+    /**
+     * The canvas object
+     */
     private static Canvas canvas;
+    /**
+     * The timer object
+     */
     RedrawTimer timer = new RedrawTimer();
 
+    /**
+     * The game instance variable
+     */
     private Monopoly game;
+
+    /**
+     * The start method, which initializes the window
+     * @param stage the primary stage for this application, onto which
+     *              the application scene can be set.
+     *              Applications may create other stages, if needed, but they will not be
+     *              primary stages.
+     * @throws IOException
+     * Creates a new StackPane
+     * Initializes the canvas object
+     * Adds the children to the StackPane
+     * Creates the Scene
+     * Sets the title
+     * Sets the icon
+     * Makes scene the active scene
+     * Maximizes the window
+     * Sets the exit hint
+     * Sets the exit key combination
+     * Creates a new Monopoly object
+     * Shows the Stage
+     * Initializes the timer
+     */
     @Override
     public void start(Stage stage) throws IOException {
         StackPane root = new StackPane();
@@ -45,10 +85,17 @@ public class Main extends Application {
         timer.start();
     }
 
+    /**
+     * The execution entry point
+     * @param args Command line arguments
+     */
     public static void main(String[] args) {
         launch(args);
     }
 
+    /**
+     * The Redraw timer class, ultimately handles drawing game elements
+     */
     public class RedrawTimer extends AnimationTimer {
         public void handle(long now) {
             game.drawAll();

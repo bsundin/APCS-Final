@@ -21,4 +21,8 @@ public class GameState {
             r.draw(canvas);
         }
     }
+
+    public void addRenderable(Renderable r) {
+        rList.add(r);
+    }
 }

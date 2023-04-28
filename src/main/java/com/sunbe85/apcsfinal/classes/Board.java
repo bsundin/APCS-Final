@@ -6,6 +6,7 @@ import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Board extends GameElement implements Renderable {
     private List<BoardSquare> squares = new ArrayList<>();
@@ -26,13 +27,19 @@ public class Board extends GameElement implements Renderable {
 
     private final int[] col = {10,9,8,7,6,5,4,3,2,1,0,0,0,0,0,0,0,0,0,0,0,1,2,3,4,5,6,7,8,9,10,10,10,10,10,10,10,10,10,10};
 
-    public Board() {
+    public Board(GameState g) {
         for (int i = 0; i < 40; i++) {
-            squares.add(new BoardSquare());
+            BoardSquare bS = new BoardSquare(names[i], direction[i], color[i], calcPos(row[i]), calcPos(col[i]));
+            squares.add(bS);
+            g.addRenderable(bS);
         }
     }
 
-    private double calcPos(int n) {
+    /**
+     * @param n the indicated row or column
+     * @return the x or y value, which is n * 98
+     */
+    private int calcPos(int n) {
         return n * 98;
     }
     @Override
