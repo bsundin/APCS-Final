@@ -19,7 +19,7 @@ public class Monopoly {
     /**
      * The initial setup menu
      */
-    MenuDialog initial;
+    GameSetup initial;
 
     /**
      * The constructor for the monopoly class, sets instance variables g, the GameState object, and b, the Board, which is passed the GameState
@@ -28,7 +28,7 @@ public class Monopoly {
     public Monopoly(Canvas cs) {
         g = new GameState(cs);
         b = new Board(g);
-        initial = new MenuDialog(500, 700, 710, 190, "SETUP");
+        initial = new GameSetup();
         g.addRenderable(initial);
     }
 
