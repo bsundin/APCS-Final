@@ -1,6 +1,8 @@
 package com.sunbe85.apcsfinal.classes;
 
 import javafx.scene.canvas.Canvas;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 
 /**
  * The Monopoly class. Runs the game.
@@ -25,10 +27,10 @@ public class Monopoly {
      * The constructor for the monopoly class, sets instance variables g, the GameState object, b, the Board, which is passed the GameState, initial, which is the game setup dialog
      * @param cs The Canvas, passed in via Main
      */
-    public Monopoly(Canvas cs) {
+    public Monopoly(Canvas cs, Pane root) {
         g = new GameState(cs);
         b = new Board(g);
-        initial = new GameSetup();
+        initial = new GameSetup(root);
         g.addRenderable(initial);
     }
 

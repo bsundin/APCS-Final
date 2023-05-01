@@ -10,6 +10,7 @@ import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -48,11 +49,6 @@ public class Main extends Application {
 
     /**
      * The start method, which initializes the window
-     * @param stage the primary stage for this application, onto which
-     *              the application scene can be set.
-     *              Applications may create other stages, if needed, but they will not be
-     *              primary stages.
-     * @throws IOException
      * Creates a new StackPane
      * Initializes the canvas object
      * Adds the children to the StackPane
@@ -66,10 +62,15 @@ public class Main extends Application {
      * Creates a new Monopoly object
      * Shows the Stage
      * Initializes the timer
+     * @param stage the primary stage for this application, onto which
+     *              the application scene can be set.
+     *              Applications may create other stages, if needed, but they will not be
+     *              primary stages.
+     * @throws IOException
      */
     @Override
     public void start(Stage stage) throws IOException {
-        StackPane root = new StackPane();
+        Pane root = new Pane();
         canvas = new Canvas(WIDTH, HEIGHT);
         root.getChildren().add(canvas);
         Scene scene = new Scene(root, WIDTH, HEIGHT);
@@ -80,7 +81,7 @@ public class Main extends Application {
         stage.setFullScreenExitHint("Press Alt + F4 to close window at any time");
         KeyCombination k = new KeyCodeCombination(KeyCode.F4, KeyCombination.ALT_DOWN);
         stage.setFullScreenExitKeyCombination(k);
-        game = new Monopoly(canvas);
+        game = new Monopoly(canvas, root);
         stage.show();
         timer.start();
     }
