@@ -3,7 +3,7 @@ package com.sunbe85.apcsfinal.classes;
 import javafx.scene.canvas.Canvas;
 
 /**
- * The Monopoly Class. Runs the game.
+ * The Monopoly class. Runs the game.
  */
 public class Monopoly {
     /**
@@ -22,7 +22,7 @@ public class Monopoly {
     GameSetup initial;
 
     /**
-     * The constructor for the monopoly class, sets instance variables g, the GameState object, and b, the Board, which is passed the GameState
+     * The constructor for the monopoly class, sets instance variables g, the GameState object, b, the Board, which is passed the GameState, initial, which is the game setup dialog
      * @param cs The Canvas, passed in via Main
      */
     public Monopoly(Canvas cs) {
