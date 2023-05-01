@@ -10,7 +10,7 @@ import java.util.Random;
 
 public class Board extends GameElement implements Renderable {
     private List<BoardSquare> squares = new ArrayList<>();
-    private final String[] names = {"Go","Mediterranean Avenue", "Community Chest", "Baltic Avenue", "Income Tax", "Reading Railroad", "Oriental Avenue", "Chance", "Vermont", "Connecticut", "Jail", "St. Charles Place", "Electric Company", "States Avenue", "Virginia Avenue", "Pennsylvania Railroad", "St. James Place", "Community Chest", "Tennessee Avenue", "New York Avenue", "Free Parking", "Kentucky Avenue", "Chance", "Indiana Avenue", "Illinois Avenue", "B. & O. Railroad", "Atlantic Avenue", "Ventnor Avenue", "Water Works", "Marvin Gardens", "Go To Jail", "Pacific Avenue", "North Carolina Avenue", "Community Chest", "Pennsylvania Avenue", "Short Line Railroad", "Chance", "Park Place", "Luxury Tax", "Boardwalk"};
+    private final String[] names = {"Go","Mediterranean\nAvenue", "Community\nChest", "Baltic\nAvenue", "Income\nTax", "Reading\nRailroad", "Oriental\nAvenue", "Chance", "Vermont", "Connecticut", "Jail", "St. Charles\nPlace", "Electric\nCompany", "States\nAvenue", "Virginia\nAvenue", "Pennsylvania\nRailroad", "St. James\nPlace", "Community\nChest", "Tennessee\nAvenue", "New York\nAvenue", "Free\nParking", "Kentucky\nAvenue", "Chance", "Indiana\nAvenue", "Illinois\nAvenue", "B. & O.\nRailroad", "Atlantic\nAvenue", "Ventnor\nAvenue", "Water\nWorks", "Marvin\nGardens", "Go To Jail", "Pacific\nAvenue", "North Carolina\nAvenue", "Community\nChest", "Pennsylvania\nAvenue", "Short Line\nRailroad", "Chance", "Park\nPlace", "Luxury\nTax", "Boardwalk"};
     /**
      * Direction of color on square:
      * 0 = no color
@@ -21,11 +21,11 @@ public class Board extends GameElement implements Renderable {
      */
     private final int[] direction = {0, 1, 0, 1, 0, 0, 1, 0, 1, 1, 0, 2, 0, 2, 2, 0, 2, 0, 2, 2, 0, 3, 0, 3, 3, 0, 3, 3, 0, 3, 0, 4, 4, 0, 4, 0, 0, 4, 0, 4};
 
-    private final Color[] color = {null, Color.BROWN, null, Color.BROWN, null, null, Color.LIGHTBLUE, null, Color.LIGHTBLUE, Color.LIGHTBLUE, null, Color.MAGENTA, null, Color.MAGENTA, Color.MAGENTA, null, Color.ORANGE, null, Color.ORANGE, Color.ORANGE, null, Color.RED, null, Color.RED, Color.RED, null, Color.YELLOW, Color.YELLOW, null, Color.YELLOW, null, Color.GREEN, Color.GREEN, null, Color.GREEN, null, null, Color.BLUE, null, Color.BLUE};
+    private final Color[] color = {Color.WHITE, Color.BROWN, Color.WHITE, Color.BROWN, Color.WHITE, Color.WHITE, Color.LIGHTBLUE, Color.WHITE, Color.LIGHTBLUE, Color.LIGHTBLUE, Color.WHITE, Color.MAGENTA, Color.WHITE, Color.MAGENTA, Color.MAGENTA, Color.WHITE, Color.ORANGE, Color.WHITE, Color.ORANGE, Color.ORANGE, Color.WHITE, Color.RED, Color.WHITE, Color.RED, Color.RED, Color.WHITE, Color.YELLOW, Color.YELLOW, Color.WHITE, Color.YELLOW, Color.WHITE, Color.GREEN, Color.GREEN, Color.WHITE, Color.GREEN, Color.WHITE, Color.WHITE, Color.BLUE, Color.WHITE, Color.BLUE};
 
-    private final int[] row = {10,10,10,10,10,10,10,10,10,10,10,9,8,7,6,5,4,3,2,1,0,0,0,0,0,0,0,0,0,0,0,1,2,3,4,5,6,7,8,9};
+    private final int[] col = {10,10,10,10,10,10,10,10,10,10,10,9,8,7,6,5,4,3,2,1,0,0,0,0,0,0,0,0,0,0,0,1,2,3,4,5,6,7,8,9};
 
-    private final int[] col = {10,9,8,7,6,5,4,3,2,1,0,0,0,0,0,0,0,0,0,0,0,1,2,3,4,5,6,7,8,9,10,10,10,10,10,10,10,10,10,10};
+    private final int[] row = {10,9,8,7,6,5,4,3,2,1,0,0,0,0,0,0,0,0,0,0,0,1,2,3,4,5,6,7,8,9,10,10,10,10,10,10,10,10,10,10};
 
     public Board(GameState g) {
         for (int i = 0; i < 40; i++) {
