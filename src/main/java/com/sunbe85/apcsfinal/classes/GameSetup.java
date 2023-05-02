@@ -1,6 +1,8 @@
 package com.sunbe85.apcsfinal.classes;
 
 import com.sunbe85.apcsfinal.interfaces.Renderable;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -8,6 +10,9 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.collections.*;
+
+import javafx.scene.control.*;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -60,5 +65,25 @@ public class GameSetup extends MenuDialog implements Renderable {
         double calcX = (WIDTH - width) / 2;
         text.setX(calcX);
         root.getChildren().add(text);
+        text = new Text("Player Count");
+        text.setFont(Font.font("Verdana", 20));
+        text.setY(300);
+        new Scene(new Group(text));
+        text.applyCss();
+        width = text.getLayoutBounds().getWidth();
+        calcX = (WIDTH - width) / 2;
+        text.setX(calcX);
+        root.getChildren().add(text);
+        String[] playerNums = {"2", "3", "4", "5", "6", "7", "8"};
+        ComboBox combo_box = new ComboBox(FXCollections.observableArrayList(playerNums));
+        root.getChildren().add(combo_box);
+        final int[] playerSelection = new int[1];
+        EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
+                    public void handle(ActionEvent e)
+                    {
+//                        selected.setText(combo_box.getValue() + " selected");
+                        playerSelection[0] = 0;
+                    }
+                };
     }
 }

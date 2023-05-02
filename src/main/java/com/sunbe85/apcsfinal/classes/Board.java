@@ -27,9 +27,18 @@ public class Board extends GameElement implements Renderable {
 
     private final int[] row = {10,9,8,7,6,5,4,3,2,1,0,0,0,0,0,0,0,0,0,0,0,1,2,3,4,5,6,7,8,9,10,10,10,10,10,10,10,10,10,10};
 
+    private boolean[] canOwn = {false, true, true, true, true, true, true, true, true, true, false, true, true, true, true, true, true, true, true, true, false, true, true, true, true, true, true, true, true, true, false, true, true, true, true, true, true, true, true, true};
+
     public Board(GameState g) {
         for (int i = 0; i < 40; i++) {
-            BoardSquare bS = new BoardSquare(names[i], direction[i], color[i], calcPos(row[i]), calcPos(col[i]));
+            BoardSquare bS;
+            if (canOwn[i] && color[i].equals(Color.WHITE)) {
+                bS = new BoardSquare(names[i], direction[i], color[i], calcPos(row[i]), calcPos(col[i]), true, false);
+            } else if (canOwn[i] && !(color[i].equals(Color.WHITE))) {
+                bS = new BoardSquare(names[i], direction[i], color[i], calcPos(row[i]), calcPos(col[i]), true, true);
+            } else {
+                bS = new BoardSquare(names[i], direction[i], color[i], calcPos(row[i]), calcPos(col[i]), false, false);
+            }
             squares.add(bS);
             g.addRenderable(bS);
         }
