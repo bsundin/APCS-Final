@@ -1,6 +1,8 @@
 package com.sunbe85.apcsfinal.classes;
 
 import com.sunbe85.apcsfinal.interfaces.Renderable;
+import javafx.scene.Group;
+import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.Pane;
@@ -12,6 +14,12 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
+
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
 
 public class GameSetup extends MenuDialog implements Renderable {
     private Pane root;
@@ -22,6 +30,9 @@ public class GameSetup extends MenuDialog implements Renderable {
 
     @Override
     public void draw(Canvas cs) {
+        GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+        final int WIDTH = gd.getDisplayMode().getWidth();
+        final int HEIGHT = gd.getDisplayMode().getHeight();
         GraphicsContext gc = cs.getGraphicsContext2D();
         gc.setFill(Color.BLACK);
         gc.fillRoundRect(getX() - 3, getY() - 3, getWidth() + 6, getHeight() + 6, 86, 86);
@@ -32,13 +43,22 @@ public class GameSetup extends MenuDialog implements Renderable {
             Image image = new Image(stream);
             ImageView imageView = new ImageView();
             imageView.setImage(image);
-            imageView.setX(10);
-            imageView.setY(10);
-            imageView.setFitWidth(75);
+            imageView.setX(1155);
+            imageView.setY(210);
+            imageView.setFitWidth(35);
             imageView.setPreserveRatio(true);
             this.root.getChildren().add(imageView);
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
+        Text text = new Text("Game Setup");
+        text.setFont(Font.font("Verdana", 25));
+        text.setY(232);
+        new Scene(new Group(text));
+        text.applyCss();
+        double width = text.getLayoutBounds().getWidth();
+        double calcX = (WIDTH - width) / 2;
+        text.setX(calcX);
+        root.getChildren().add(text);
     }
 }
