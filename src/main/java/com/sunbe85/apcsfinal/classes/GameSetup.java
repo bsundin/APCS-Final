@@ -1,16 +1,12 @@
 package com.sunbe85.apcsfinal.classes;
 
 import com.sunbe85.apcsfinal.interfaces.Renderable;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
-import javafx.collections.*;
 
 import javafx.scene.control.*;
 
@@ -21,18 +17,33 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
 
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicReference;
 
 import static java.lang.System.*;
 
 public class GameSetup extends MenuDialog implements Renderable {
     private Pane root;
+    private ComboBox comboBox;
+    private int selectedIndex;
+    private Object selectedItem;
+
     public GameSetup(Pane root) {
         super(500, 700, 710, 190);
         this.root = root;
+        comboBox = new ComboBox();
+        for (int i = 2; i < 9; i++) {
+            comboBox.getItems().add(i);
+        }
+        selectedIndex = 0;
+        selectedItem = null;
+        comboBox.setOnAction((event) -> {
+            selectedIndex = comboBox.getSelectionModel().getSelectedIndex();
+            selectedItem = comboBox.getSelectionModel().getSelectedItem();
+        });
     }
 
     @Override
@@ -46,7 +57,7 @@ public class GameSetup extends MenuDialog implements Renderable {
         gc.setFill(Color.WHITE);
         gc.fillRoundRect(getX(), getY(), getWidth(), getHeight(), 80, 80);
         try {
-            InputStream stream = new FileInputStream("C:\\Users\\sunbe85\\IdeaProjects\\APCS-Final-Monopoly\\src\\main\\resources\\com\\sunbe85\\apcsfinal\\images\\png\\close.png");
+            InputStream stream = new FileInputStream("src/main/resources/com/sunbe85/apcsfinal/images/png/close.png");
             Image image = new Image(stream);
             ImageView imageView = new ImageView();
             imageView.setImage(image);
@@ -76,18 +87,8 @@ public class GameSetup extends MenuDialog implements Renderable {
         calcX = (WIDTH - width) / 2;
         text.setX(calcX);
         root.getChildren().add(text);
-        int[] playerNums = {2, 3, 4, 5, 6, 7, 8};
-        ComboBox combo_box = new ComboBox(FXCollections.observableArrayList(playerNums));
-        root.getChildren().add(combo_box);
-        final int[] playerSelectionTemp = new int[1];
-        EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
-            public void handle(ActionEvent e) {
-                playerSelectionTemp[0] = (int) combo_box.getValue();
-                out.println(combo_box.getValue());
-            }
-        };
-        combo_box.setOnAction(event);
-        int playerSelection = playerSelectionTemp[0];
-        out.println(playerSelection);
+        root.getChildren().add(comboBox);
+        out.println(selectedIndex + " " + selectedItem);
     }
+
 }
