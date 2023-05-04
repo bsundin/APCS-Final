@@ -26,6 +26,8 @@ import javafx.scene.text.TextAlignment;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 
+import static java.lang.System.*;
+
 public class GameSetup extends MenuDialog implements Renderable {
     private Pane root;
     public GameSetup(Pane root) {
@@ -44,7 +46,7 @@ public class GameSetup extends MenuDialog implements Renderable {
         gc.setFill(Color.WHITE);
         gc.fillRoundRect(getX(), getY(), getWidth(), getHeight(), 80, 80);
         try {
-            InputStream stream = new FileInputStream("C:\\Users\\sunbe85\\Documents\\APCS-Final\\src\\main\\resources\\com\\sunbe85\\apcsfinal\\images\\png\\close.png");
+            InputStream stream = new FileInputStream("C:\\Users\\sunbe85\\IdeaProjects\\APCS-Final-Monopoly\\src\\main\\resources\\com\\sunbe85\\apcsfinal\\images\\png\\close.png");
             Image image = new Image(stream);
             ImageView imageView = new ImageView();
             imageView.setImage(image);
@@ -74,16 +76,18 @@ public class GameSetup extends MenuDialog implements Renderable {
         calcX = (WIDTH - width) / 2;
         text.setX(calcX);
         root.getChildren().add(text);
-        String[] playerNums = {"2", "3", "4", "5", "6", "7", "8"};
+        int[] playerNums = {2, 3, 4, 5, 6, 7, 8};
         ComboBox combo_box = new ComboBox(FXCollections.observableArrayList(playerNums));
         root.getChildren().add(combo_box);
-        final int[] playerSelection = new int[1];
+        final int[] playerSelectionTemp = new int[1];
         EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
-                    public void handle(ActionEvent e)
-                    {
-//                        selected.setText(combo_box.getValue() + " selected");
-                        playerSelection[0] = 0;
-                    }
-                };
+            public void handle(ActionEvent e) {
+                playerSelectionTemp[0] = (int) combo_box.getValue();
+                out.println(combo_box.getValue());
+            }
+        };
+        combo_box.setOnAction(event);
+        int playerSelection = playerSelectionTemp[0];
+        out.println(playerSelection);
     }
 }
