@@ -1,6 +1,8 @@
 package com.sunbe85.apcsfinal.classes;
 
 import com.sunbe85.apcsfinal.interfaces.Renderable;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -40,17 +42,25 @@ public class GameSetup extends MenuDialog implements Renderable {
         }
         selectedIndex = 0;
         selectedItem = null;
-        comboBox.setOnAction((event) -> {
-            selectedIndex = comboBox.getSelectionModel().getSelectedIndex();
-            selectedItem = comboBox.getSelectionModel().getSelectedItem();
-        });
+        EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
+                    public void handle(ActionEvent e)
+                    {
+//                        selected.setText(combo_box.getValue() + " selected");
+                        selectedIndex = comboBox.getSelectionModel().getSelectedIndex();
+                        selectedItem = comboBox.getSelectionModel().getSelectedItem();
+                    }
+                };
+        comboBox.setOnAction(event);
+//        comboBox.setOnAction((event) -> {
+//            selectedIndex = comboBox.getSelectionModel().getSelectedIndex();
+//            selectedItem = comboBox.getSelectionModel().getSelectedItem();
+//        });
     }
 
     @Override
     public void draw(Canvas cs) {
         GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
         final int WIDTH = gd.getDisplayMode().getWidth();
-        final int HEIGHT = gd.getDisplayMode().getHeight();
         GraphicsContext gc = cs.getGraphicsContext2D();
         gc.setFill(Color.BLACK);
         gc.fillRoundRect(getX() - 3, getY() - 3, getWidth() + 6, getHeight() + 6, 86, 86);
@@ -69,24 +79,9 @@ public class GameSetup extends MenuDialog implements Renderable {
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
-        Text text = new Text("Game Setup");
-        text.setFont(Font.font("Verdana", 25));
-        text.setY(232);
-        new Scene(new Group(text));
-        text.applyCss();
-        double width = text.getLayoutBounds().getWidth();
-        double calcX = (WIDTH - width) / 2;
-        text.setX(calcX);
-        root.getChildren().add(text);
-        text = new Text("Player Count");
-        text.setFont(Font.font("Verdana", 20));
-        text.setY(300);
-        new Scene(new Group(text));
-        text.applyCss();
-        width = text.getLayoutBounds().getWidth();
-        calcX = (WIDTH - width) / 2;
-        text.setX(calcX);
-        root.getChildren().add(text);
+        DrawUtils.drawCenteredText("Game Setup", "Verdana", 25, 232, root);
+        DrawUtils.drawCenteredText("Player Count", "Verdana", 20, 300, root);
+
         root.getChildren().add(comboBox);
         out.println(selectedIndex + " " + selectedItem);
     }
