@@ -59,8 +59,6 @@ public class GameSetup extends MenuDialog implements Renderable {
 
     @Override
     public void draw(Canvas cs) {
-        GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
-        final int WIDTH = gd.getDisplayMode().getWidth();
         GraphicsContext gc = cs.getGraphicsContext2D();
         gc.setFill(Color.BLACK);
         gc.fillRoundRect(getX() - 3, getY() - 3, getWidth() + 6, getHeight() + 6, 86, 86);
