@@ -29,15 +29,15 @@ public class Board extends GameElement implements Renderable {
 
     private boolean[] canOwn = {false, true, true, true, true, true, true, true, true, true, false, true, true, true, true, true, true, true, true, true, false, true, true, true, true, true, true, true, true, true, false, true, true, true, true, true, true, true, true, true};
 
-    public Board(GameState g) {
+    public Board(GameState g, Canvas cs) {
         for (int i = 0; i < 40; i++) {
             BoardSquare bS;
             if (canOwn[i] && color[i].equals(Color.WHITE)) {
-                bS = new BoardSquare(names[i], direction[i], color[i], calcPos(row[i]), calcPos(col[i]), true, false);
+                bS = new BoardSquare(names[i], direction[i], color[i], calcPos(row[i]), calcPos(col[i]), true, false, cs);
             } else if (canOwn[i] && !(color[i].equals(Color.WHITE))) {
-                bS = new BoardSquare(names[i], direction[i], color[i], calcPos(row[i]), calcPos(col[i]), true, true);
+                bS = new BoardSquare(names[i], direction[i], color[i], calcPos(row[i]), calcPos(col[i]), true, true, cs);
             } else {
-                bS = new BoardSquare(names[i], direction[i], color[i], calcPos(row[i]), calcPos(col[i]), false, false);
+                bS = new BoardSquare(names[i], direction[i], color[i], calcPos(row[i]), calcPos(col[i]), false, false, cs);
             }
             squares.add(bS);
             g.addRenderable(bS);

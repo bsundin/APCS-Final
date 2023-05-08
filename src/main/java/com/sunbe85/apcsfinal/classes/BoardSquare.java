@@ -19,7 +19,7 @@ public class BoardSquare extends GameElement implements Renderable {
         super();
     }
 
-    public BoardSquare(String name, int d, Color c, int x, int y, boolean canOwn, boolean canBuild) {
+    public BoardSquare(String name, int d, Color c, int x, int y, boolean canOwn, boolean canBuild, Canvas cs) {
         super(98, 98, x, y);
         textX = x + 50;
         textY = y + 45;
@@ -27,6 +27,15 @@ public class BoardSquare extends GameElement implements Renderable {
         this.name = name;
         this.direction = d;
         calcColorData(x, y);
+        GraphicsContext gc = cs.getGraphicsContext2D();
+        gc.setFill(Color.WHITE);
+        gc.fillRect(getX(),getY(),getWidth(),getHeight());
+        gc.setFill(c);
+        gc.fillRect(colorX, colorY, colorWidth, colorHeight);
+        gc.setFill(Color.BLACK);
+        gc.setFont(Font.font ("Verdana", 10));
+        gc.setTextAlign(TextAlignment.CENTER);
+        gc.fillText(name, textX, textY);
     }
 
     private void calcColorData(int x, int y) {
@@ -60,14 +69,6 @@ public class BoardSquare extends GameElement implements Renderable {
 
     @Override
     public void draw(Canvas cs) {
-        GraphicsContext gc = cs.getGraphicsContext2D();
-        gc.setFill(Color.WHITE);
-        gc.fillRect(getX(),getY(),getWidth(),getHeight());
-        gc.setFill(c);
-        gc.fillRect(colorX, colorY, colorWidth, colorHeight);
-        gc.setFill(Color.BLACK);
-        gc.setFont(Font.font ("Verdana", 10));
-        gc.setTextAlign(TextAlignment.CENTER);
-        gc.fillText(name, textX, textY);
+
     }
 }
