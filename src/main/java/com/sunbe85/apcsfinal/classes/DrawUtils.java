@@ -88,4 +88,9 @@ public class DrawUtils {
     public static void clearScreen(Pane root) {
         root.getChildren().clear();
     }
+
+    public static Object remove(Object object, Pane root) {
+        root.getChildren().remove(object);
+        return object;
+    }
 }
