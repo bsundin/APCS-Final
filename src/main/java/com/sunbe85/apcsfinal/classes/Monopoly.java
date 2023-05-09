@@ -4,6 +4,8 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
+import java.util.ArrayList;
+
 /**
  * The Monopoly class. Runs the game.
  */
@@ -11,17 +13,19 @@ public class Monopoly {
     /**
      * The GameState object
      */
-    GameState g;
+    private GameState g;
 
     /**
      * The Board object
      */
-    Board b;
+    private Board b;
 
     /**
      * The initial setup menu
      */
-    GameSetup initial;
+    private GameSetup initial;
+
+    public ArrayList<Piece> piecesInUse;
 
     /**
      * The constructor for the monopoly class, sets instance variables g, the GameState object, b, the Board, which is passed the GameState, initial, which is the game setup dialog

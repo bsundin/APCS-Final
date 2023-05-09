@@ -3,6 +3,7 @@ package com.sunbe85.apcsfinal.classes;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
@@ -18,13 +19,15 @@ import java.io.InputStream;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 
+import static java.lang.System.out;
+
 
 public class DrawUtils {
     public static void drawText(String t, String family, int size, int x, int y, Pane pane) {
         Text text = new Text(t);
         text.setFont(Font.font(family, size));
-        text.setX((double) x);
-        text.setY((double) y);
+        text.setX(x);
+        text.setY(y);
         pane.getChildren().add(text);
     }
 
@@ -66,7 +69,23 @@ public class DrawUtils {
         gc.fillRoundRect(x, y, width, height, arcDimension, arcDimension);
     }
 
-    public static void dropdown(String type) {
+    public static ChoiceBox<String> dropdownCenter(String[] options, int y, Pane root) {
+        GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+        final int WIDTH = gd.getDisplayMode().getWidth();
+        ChoiceBox<String> dropdown = new ChoiceBox<>();
+        dropdown.getItems().addAll(options);
+        dropdown.setValue(options[0]);
+        dropdown.setLayoutY(y);
+        new Scene(new Group(dropdown));
+        dropdown.applyCss();
+        double width = dropdown.getLayoutBounds().getWidth();
+        double calcX = (WIDTH - width) / 2;
+        dropdown.setLayoutX(calcX);
+        root.getChildren().add(dropdown);
+        return dropdown;
+    }
 
+    public static void clearScreen(Pane root) {
+        root.getChildren().clear();
     }
 }
