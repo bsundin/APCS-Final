@@ -7,6 +7,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.image.Image;
@@ -66,13 +67,26 @@ public class DrawUtils {
         return imageView;
     }
 
-    public static GraphicsContext drawBoxWithBorder(Canvas cs, double x, double y, double width, double height, int arcDimension, int borderArcDimension, Color boxColor, Color borderColor) {
-        GraphicsContext gc = cs.getGraphicsContext2D();
-        gc.setFill(borderColor);
-        gc.fillRoundRect(x - 3, y - 3, width + 6, height + 6, borderArcDimension, borderArcDimension);
-        gc.setFill(boxColor);
-        gc.fillRoundRect(x, y, width, height, arcDimension, arcDimension);
-        return gc;
+    public static BoxWithBorder drawBoxWithBorder(double x, double y, double width, double height, int arcDimension, int borderArcDimension, Color boxColor, Color borderColor, Pane root) {
+        Rectangle r1 = new Rectangle();
+        r1.setFill(borderColor);
+        r1.setX(x - 3);
+        r1.setY(y - 3);
+        r1.setWidth(width + 6);
+        r1.setHeight(height + 6);
+        r1.setArcHeight(borderArcDimension);
+        r1.setArcWidth(borderArcDimension);
+        root.getChildren().add(r1);
+        Rectangle r2 = new Rectangle();
+        r2.setFill(boxColor);
+        r2.setX(x);
+        r2.setY(y);
+        r2.setWidth(width);
+        r2.setHeight(height);
+        r2.setArcHeight(arcDimension);
+        r2.setArcWidth(arcDimension);
+        root.getChildren().add(r2);
+        return new BoxWithBorder(r1, r2);
     }
 
     public static ChoiceBox<String> dropdownCenter(String[] options, int y, Pane root) {
@@ -100,7 +114,6 @@ public class DrawUtils {
             n.toBack();
             root.getChildren().remove(n);
         }
-        out.println("still working");
         return nodes;
     }
 }
