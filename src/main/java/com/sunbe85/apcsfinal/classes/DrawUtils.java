@@ -19,6 +19,7 @@ import java.io.InputStream;
 
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
+import java.util.ArrayList;
 
 import static java.lang.System.out;
 
@@ -94,9 +95,12 @@ public class DrawUtils {
         root.getChildren().clear();
     }
 
-    public static Object remove(Object object, Pane root) {
-//        object.toBack();
+    public static ArrayList remove(ArrayList<Node> nodes, Pane root) {
+        for (Node n : nodes) {
+            n.toBack();
+            root.getChildren().remove(n);
+        }
         out.println("still working");
-        return object;
+        return nodes;
     }
 }
