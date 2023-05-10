@@ -30,7 +30,7 @@ public class GameSetup extends MenuDialog implements Renderable {
     public GameSetup(Pane root, Canvas cs) {
         super(500, 700, 710, 190);
         visibleObjects = new ArrayList<>();
-        visibleObjects.add(DrawUtils.drawBoxWithBorder(getX(), getY(), getWidth(), getHeight(), 80, 86, Color.WHITE, Color.BLACK, root));
+        visibleObjects.add(DrawUtils.drawBoxWithOuterBorder(getX(), getY(), getWidth(), getHeight(), 3, 80, 86, Color.WHITE, Color.BLACK, root));
         closeBtn = DrawUtils.addImage("src/main/resources/com/sunbe85/apcsfinal/images/png/close.png", 1155, 210, 35, true, root);
         visibleObjects.add(closeBtn);
         visibleObjects.add(DrawUtils.drawCenteredText("Game Setup", "Verdana", 25, 232, root));

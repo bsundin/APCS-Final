@@ -2,6 +2,7 @@ package com.sunbe85.apcsfinal.classes;
 
 import com.sunbe85.apcsfinal.interfaces.Renderable;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
@@ -29,15 +30,15 @@ public class Board extends GameElement implements Renderable {
 
     private boolean[] canOwn = {false, true, true, true, true, true, true, true, true, true, false, true, true, true, true, true, true, true, true, true, false, true, true, true, true, true, true, true, true, true, false, true, true, true, true, true, true, true, true, true};
 
-    public Board(GameState g, Canvas cs) {
+    public Board(GameState g, Canvas cs, Pane root) {
         for (int i = 0; i < 40; i++) {
             BoardSquare bS;
             if (canOwn[i] && color[i].equals(Color.WHITE)) {
-                bS = new BoardSquare(names[i], direction[i], color[i], calcPos(row[i]), calcPos(col[i]), true, false, cs);
+                bS = new BoardSquare(names[i], direction[i], color[i], calcPos(row[i]), calcPos(col[i]), true, false, cs, root);
             } else if (canOwn[i] && !(color[i].equals(Color.WHITE))) {
-                bS = new BoardSquare(names[i], direction[i], color[i], calcPos(row[i]), calcPos(col[i]), true, true, cs);
+                bS = new BoardSquare(names[i], direction[i], color[i], calcPos(row[i]), calcPos(col[i]), true, true, cs, root);
             } else {
-                bS = new BoardSquare(names[i], direction[i], color[i], calcPos(row[i]), calcPos(col[i]), false, false, cs);
+                bS = new BoardSquare(names[i], direction[i], color[i], calcPos(row[i]), calcPos(col[i]), false, false, cs, root);
             }
             squares.add(bS);
             g.addRenderable(bS);

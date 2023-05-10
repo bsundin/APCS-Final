@@ -3,6 +3,7 @@ package com.sunbe85.apcsfinal.classes;
 import com.sunbe85.apcsfinal.interfaces.Renderable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -19,23 +20,16 @@ public class BoardSquare extends GameElement implements Renderable {
         super();
     }
 
-    public BoardSquare(String name, int d, Color c, int x, int y, boolean canOwn, boolean canBuild, Canvas cs) {
+    public BoardSquare(String name, int d, Color c, int x, int y, boolean canOwn, boolean canBuild, Canvas cs, Pane root) {
         super(98, 98, x, y);
-        textX = x + 50;
         textY = y + 45;
         this.c = c;
         this.name = name;
         this.direction = d;
         calcColorData(x, y);
-        GraphicsContext gc = cs.getGraphicsContext2D();
-        gc.setFill(Color.WHITE);
-        gc.fillRect(getX(),getY(),getWidth(),getHeight());
-        gc.setFill(c);
-        gc.fillRect(colorX, colorY, colorWidth, colorHeight);
-        gc.setFill(Color.BLACK);
-        gc.setFont(Font.font ("Verdana", 10));
-        gc.setTextAlign(TextAlignment.CENTER);
-        gc.fillText(name, textX, textY);
+        DrawUtils.drawBoxWithInnerBorder(getX(), getY(), getWidth(), getHeight(), 1, 0, 0, Color.WHITE, Color.BLACK, root);
+        DrawUtils.drawBoxWithInnerBorder(colorX, colorY, colorWidth, colorHeight, 0, 0,0, c, c, root);
+        DrawUtils.drawText(name, "Verdana", 10, (int) DrawUtils.getCenteredX(name, "Verdana", 10, 98) + x, (int) DrawUtils.getCenteredY(name, "Verdana", 10, 98) + y + 7, root);
     }
 
     private void calcColorData(int x, int y) {
