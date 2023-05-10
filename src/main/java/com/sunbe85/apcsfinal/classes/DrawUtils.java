@@ -1,11 +1,14 @@
 package com.sunbe85.apcsfinal.classes;
 
+import javafx.event.EventHandler;
+import javafx.scene.Cursor;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
@@ -111,6 +114,12 @@ public class DrawUtils {
 
     public static ArrayList remove(ArrayList<Node> nodes, Pane root) {
         for (Node n : nodes) {
+            if (n instanceof BoxWithBorder) {
+                ((BoxWithBorder) n).getRect().toBack();
+                ((BoxWithBorder) n).getBorderRect().toBack();
+                root.getChildren().remove(((BoxWithBorder) n).getRect());
+                root.getChildren().remove(((BoxWithBorder) n).getBorderRect());
+            }
             n.toBack();
             root.getChildren().remove(n);
         }

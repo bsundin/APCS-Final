@@ -1,9 +1,12 @@
 package com.sunbe85.apcsfinal.classes;
 
 import com.sunbe85.apcsfinal.interfaces.Renderable;
+import javafx.event.EventHandler;
+import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 
@@ -15,21 +18,17 @@ import static java.lang.System.out;
 
 
 public class GameSetup extends MenuDialog implements Renderable {
-    private Pane root;
-
-    private int playerChoice;
 
     ImageView closeBtn;
 
-    private ChoiceBox<String> dropdown;
+    private final ChoiceBox<String> dropdown;
 
-    private ArrayList<Player> players;
+    private final ArrayList<Player> players;
 
-    private ArrayList<Node> visibleObjects;
+    private final ArrayList<Node> visibleObjects;
 
     public GameSetup(Pane root, Canvas cs) {
         super(500, 700, 710, 190);
-        this.root = root;
         visibleObjects = new ArrayList<>();
         visibleObjects.add(DrawUtils.drawBoxWithBorder(getX(), getY(), getWidth(), getHeight(), 80, 86, Color.WHITE, Color.BLACK, root));
         closeBtn = DrawUtils.addImage("src/main/resources/com/sunbe85/apcsfinal/images/png/close.png", 1155, 210, 35, true, root);
@@ -40,12 +39,16 @@ public class GameSetup extends MenuDialog implements Renderable {
         visibleObjects.add(dropdown);
         dropdown.setOnAction(e -> getDropdownChoice(dropdown));
         players = new ArrayList<>();
-        closeBtn.setOnMouseClicked(e -> DrawUtils.remove(visibleObjects, root));
+        closeBtn.setOnMouseClicked(e -> remove(visibleObjects, root));
+        closeBtn.setCursor(Cursor.HAND);
     }
 
+    private void remove(ArrayList<Node> objects, Pane root) {
+        DrawUtils.remove(objects, root);
+    }
 
     private void getDropdownChoice(ChoiceBox<String> dropdown) {
-        playerChoice = Integer.parseInt(dropdown.getValue());
+        int playerChoice = Integer.parseInt(dropdown.getValue());
         out.println(playerChoice);
         for (int i = 0; i < playerChoice; i++) {
             players.add(new Player());
