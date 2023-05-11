@@ -7,10 +7,9 @@ import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class Board extends GameElement implements Renderable {
-    private List<BoardSquare> squares = new ArrayList<>();
+    private final List<BoardSquare> squares = new ArrayList<>();
     private final String[] names = {"Go","Mediterranean\nAvenue", "Community\nChest", "Baltic\nAvenue", "Income\nTax", "Reading\nRailroad", "Oriental\nAvenue", "Chance", "Vermont", "Connecticut", "Jail", "St. Charles\nPlace", "Electric\nCompany", "States\nAvenue", "Virginia\nAvenue", "Pennsylvania\nRailroad", "St. James\nPlace", "Community\nChest", "Tennessee\nAvenue", "New York\nAvenue", "Free\nParking", "Kentucky\nAvenue", "Chance", "Indiana\nAvenue", "Illinois\nAvenue", "B. & O.\nRailroad", "Atlantic\nAvenue", "Ventnor\nAvenue", "Water\nWorks", "Marvin\nGardens", "Go To Jail", "Pacific\nAvenue", "North Carolina\nAvenue", "Community\nChest", "Pennsylvania\nAvenue", "Short Line\nRailroad", "Chance", "Park\nPlace", "Luxury\nTax", "Boardwalk"};
     /**
      * Direction of color on square:
@@ -28,17 +27,21 @@ public class Board extends GameElement implements Renderable {
 
     private final int[] row = {10,9,8,7,6,5,4,3,2,1,0,0,0,0,0,0,0,0,0,0,0,1,2,3,4,5,6,7,8,9,10,10,10,10,10,10,10,10,10,10};
 
-    private boolean[] canOwn = {false, true, true, true, true, true, true, true, true, true, false, true, true, true, true, true, true, true, true, true, false, true, true, true, true, true, true, true, true, true, false, true, true, true, true, true, true, true, true, true};
+    private final boolean[] canOwn = {false, true, true, true, true, true, true, true, true, true, false, true, true, true, true, true, true, true, true, true, false, true, true, true, true, true, true, true, true, true, false, true, true, true, true, true, true, true, true, true};
 
-    public Board(GameState g, Canvas cs, Pane root) {
+    /**
+     * @param g A GameState object
+     * @param root The Pane object
+     */
+    public Board(GameState g, Pane root) {
         for (int i = 0; i < 40; i++) {
             BoardSquare bS;
             if (canOwn[i] && color[i].equals(Color.WHITE)) {
-                bS = new BoardSquare(names[i], direction[i], color[i], calcPos(row[i]), calcPos(col[i]), true, false, cs, root);
+                bS = new BoardSquare(names[i], direction[i], color[i], calcPos(row[i]), calcPos(col[i]), true, false, root);
             } else if (canOwn[i] && !(color[i].equals(Color.WHITE))) {
-                bS = new BoardSquare(names[i], direction[i], color[i], calcPos(row[i]), calcPos(col[i]), true, true, cs, root);
+                bS = new BoardSquare(names[i], direction[i], color[i], calcPos(row[i]), calcPos(col[i]), true, true, root);
             } else {
-                bS = new BoardSquare(names[i], direction[i], color[i], calcPos(row[i]), calcPos(col[i]), false, false, cs, root);
+                bS = new BoardSquare(names[i], direction[i], color[i], calcPos(row[i]), calcPos(col[i]), false, false, root);
             }
             squares.add(bS);
             g.addRenderable(bS);
@@ -52,6 +55,10 @@ public class Board extends GameElement implements Renderable {
     private int calcPos(int n) {
         return n * 98;
     }
+
+    /**
+     * @param cs The canvas
+     */
     @Override
     public void draw(Canvas cs) {
 

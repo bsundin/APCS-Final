@@ -20,7 +20,7 @@ public class BoardSquare extends GameElement implements Renderable {
         super();
     }
 
-    public BoardSquare(String name, int d, Color c, int x, int y, boolean canOwn, boolean canBuild, Canvas cs, Pane root) {
+    public BoardSquare(String name, int d, Color c, int x, int y, boolean canOwn, boolean canBuild, Pane root) {
         super(98, 98, x, y);
         textY = y + 45;
         this.c = c;

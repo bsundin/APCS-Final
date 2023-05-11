@@ -2,7 +2,6 @@ package com.sunbe85.apcsfinal.classes;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 
 import java.util.ArrayList;
 
@@ -13,17 +12,17 @@ public class Monopoly {
     /**
      * The GameState object
      */
-    private GameState g;
+    private final GameState g;
 
     /**
      * The Board object
      */
-    private Board b;
+    private final Board b;
 
     /**
      * The initial setup menu
      */
-    private GameSetup initial;
+    private final GameSetup initial;
 
     public ArrayList<Piece> piecesInUse;
 
@@ -33,8 +32,8 @@ public class Monopoly {
      */
     public Monopoly(Canvas cs, Pane root) {
         g = new GameState(cs);
-        b = new Board(g, cs, root);
-        initial = new GameSetup(root, cs);
+        b = new Board(g, root);
+        initial = new GameSetup(root);
         g.addRenderable(initial);
     }
 

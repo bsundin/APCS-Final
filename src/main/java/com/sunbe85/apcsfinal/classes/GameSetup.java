@@ -27,7 +27,7 @@ public class GameSetup extends MenuDialog implements Renderable {
 
     private final ArrayList<Node> visibleObjects;
 
-    public GameSetup(Pane root, Canvas cs) {
+    public GameSetup(Pane root) {
         super(500, 700, 710, 190);
         visibleObjects = new ArrayList<>();
         visibleObjects.add(DrawUtils.drawBoxWithOuterBorder(getX(), getY(), getWidth(), getHeight(), 3, 80, 86, Color.WHITE, Color.BLACK, root));
