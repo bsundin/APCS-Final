@@ -10,7 +10,7 @@ public class Piece extends GameElement implements Renderable, Updateable {
 
     private final String[] pieceNames = new String[] {"Dog", "Car", "Battleship", "Hat", "Thimble", "Cat", "Wheelbarrow", "Boot"};
 
-    private final String[] fileLocs = new String[] {""};
+    private final String[] fileLocs = new String[] {"", "", "", "", "", "", "", "", ""};
 
     private String name;
 
