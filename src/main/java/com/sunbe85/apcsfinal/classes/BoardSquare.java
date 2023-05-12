@@ -33,31 +33,37 @@ public class BoardSquare extends GameElement implements Renderable {
     }
 
     private void calcColorData(int x, int y) {
-        if (direction == 0) {
-            this.colorHeight = 0;
-            this.colorWidth = 0;
-            this.colorX = x;
-            this.colorY = y;
-        } else if (direction == 1) {
-            this.colorHeight = 10;
-            this.colorWidth = 98;
-            this.colorX = x;
-            this.colorY = y;
-        } else if (direction == 2) {
-            this.colorHeight = 98;
-            this.colorWidth = 10;
-            this.colorX = x + 88;
-            this.colorY = y;
-        } else if (direction == 3) {
-            this.colorHeight = 10;
-            this.colorWidth = 98;
-            this.colorX = x;
-            this.colorY = y + 88;
-        } else if (direction == 4) {
-            this.colorHeight = 98;
-            this.colorWidth = 10;
-            this.colorX = x;
-            this.colorY = y;
+        switch (direction) {
+            case 0 -> {
+                this.colorHeight = 0;
+                this.colorWidth = 0;
+                this.colorX = x;
+                this.colorY = y;
+            }
+            case 1 -> {
+                this.colorHeight = 10;
+                this.colorWidth = 98;
+                this.colorX = x;
+                this.colorY = y;
+            }
+            case 2 -> {
+                this.colorHeight = 98;
+                this.colorWidth = 10;
+                this.colorX = x + 88;
+                this.colorY = y;
+            }
+            case 3 -> {
+                this.colorHeight = 10;
+                this.colorWidth = 98;
+                this.colorX = x;
+                this.colorY = y + 88;
+            }
+            case 4 -> {
+                this.colorHeight = 98;
+                this.colorWidth = 10;
+                this.colorX = x;
+                this.colorY = y;
+            }
         }
     }
 
