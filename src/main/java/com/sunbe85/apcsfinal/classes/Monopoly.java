@@ -33,7 +33,7 @@ public class Monopoly {
     public Monopoly(Canvas cs, Pane root) {
         g = new GameState(cs);
         b = new Board(g, root);
-        initial = new GameSetup(root);
+        initial = new GameSetup(root, piecesInUse);
         g.addRenderable(initial);
     }
 

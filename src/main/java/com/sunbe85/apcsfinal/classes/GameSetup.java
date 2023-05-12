@@ -27,7 +27,9 @@ public class GameSetup extends MenuDialog implements Renderable {
 
     private final ArrayList<Node> visibleObjects;
 
-    public GameSetup(Pane root) {
+    private final ArrayList<Piece> piecesInUse;
+
+    public GameSetup(Pane root, ArrayList<Piece> piecesInUse) {
         super(500, 700, 710, 190);
         visibleObjects = new ArrayList<>();
         visibleObjects.add(DrawUtils.drawBoxWithOuterBorder(getX(), getY(), getWidth(), getHeight(), 3, 80, 86, Color.WHITE, Color.BLACK, root));
@@ -41,6 +43,7 @@ public class GameSetup extends MenuDialog implements Renderable {
         players = new ArrayList<>();
         closeBtn.setOnMouseClicked(e -> remove(visibleObjects, root));
         closeBtn.setCursor(Cursor.HAND);
+        this.piecesInUse = piecesInUse;
     }
 
     private void remove(ArrayList<Node> objects, Pane root) {
@@ -51,7 +54,7 @@ public class GameSetup extends MenuDialog implements Renderable {
         int playerChoice = Integer.parseInt(dropdown.getValue());
         out.println(playerChoice);
         for (int i = 0; i < playerChoice; i++) {
-            players.add(new Player());
+            players.add(new Player(new Piece(i)));
         }
     }
 
