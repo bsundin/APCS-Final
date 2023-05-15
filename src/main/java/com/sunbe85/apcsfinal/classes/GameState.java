@@ -1,7 +1,7 @@
 package com.sunbe85.apcsfinal.classes;
 
 import com.sunbe85.apcsfinal.interfaces.Renderable;
-import com.sunbe85.apcsfinal.interfaces.Updateable;
+import com.sunbe85.apcsfinal.interfaces.Updatable;
 import javafx.scene.canvas.Canvas;
 
 import java.util.ArrayList;
@@ -13,7 +13,7 @@ public class GameState {
         canvas = cs;
     }
     private List<Renderable> rList = new ArrayList<Renderable>();
-    private List<Updateable> uList = new ArrayList<Updateable>();
+    private List<Updatable> uList = new ArrayList<Updatable>();
     private List<GameElement> gList = new ArrayList<GameElement>();
 
     public void drawAll() {

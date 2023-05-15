@@ -58,9 +58,10 @@ public class GameSetup extends MenuDialog implements Renderable {
 
     private void getDropdownChoice(ChoiceBox<String> dropdown) {
         int playerChoice = Integer.parseInt(dropdown.getValue());
-        out.println(playerChoice);
-        for (int i = 1; i <= playerChoice; i++) {
+        int i = 1;
+        while (i <= playerChoice) {
             players.add(new Player(new Piece(i - 1), i - 1, 1080 / playerChoice, root));
+            i++;
         }
     }
 

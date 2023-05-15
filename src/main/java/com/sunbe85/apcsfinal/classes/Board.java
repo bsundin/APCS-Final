@@ -8,6 +8,9 @@ import javafx.scene.paint.Color;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The Board class, sets up the board
+ */
 public class Board extends GameElement implements Renderable {
     private final List<BoardSquare> squares = new ArrayList<>();
     private final String[] names = {"Go","Mediterranean\nAvenue", "Community\nChest", "Baltic\nAvenue", "Income\nTax", "Reading\nRailroad", "Oriental\nAvenue", "Chance", "Vermont", "Connecticut", "Jail", "St. Charles\nPlace", "Electric\nCompany", "States\nAvenue", "Virginia\nAvenue", "Pennsylvania\nRailroad", "St. James\nPlace", "Community\nChest", "Tennessee\nAvenue", "New York\nAvenue", "Free\nParking", "Kentucky\nAvenue", "Chance", "Indiana\nAvenue", "Illinois\nAvenue", "B. & O.\nRailroad", "Atlantic\nAvenue", "Ventnor\nAvenue", "Water\nWorks", "Marvin\nGardens", "Go To Jail", "Pacific\nAvenue", "North Carolina\nAvenue", "Community\nChest", "Pennsylvania\nAvenue", "Short Line\nRailroad", "Chance", "Park\nPlace", "Luxury\nTax", "Boardwalk"};
@@ -30,6 +33,7 @@ public class Board extends GameElement implements Renderable {
     private final boolean[] canOwn = {false, true, true, true, true, true, true, true, true, true, false, true, true, true, true, true, true, true, true, true, false, true, true, true, true, true, true, true, true, true, false, true, true, true, true, true, true, true, true, true};
 
     /**
+     * Constructor for the board class, for each of 40 squares, creates a new BoardSquare object by iterating through each array above for pertinent information about that square
      * @param g A GameState object
      * @param root The Pane object
      */
@@ -49,6 +53,7 @@ public class Board extends GameElement implements Renderable {
     }
 
     /**
+     * Calculates the position that the box should be, can be used in both X and Y direction
      * @param n the indicated row or column
      * @return the x or y value, which is n * 98
      */
