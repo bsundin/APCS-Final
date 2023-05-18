@@ -7,6 +7,9 @@ import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 
+/**
+ * The class to represent a player
+ */
 public class Player extends GameElement implements Renderable {
     private Piece thisPiece;
 
@@ -20,6 +23,13 @@ public class Player extends GameElement implements Renderable {
 
     private Pane root;
 
+    /**
+     * Sets instance variables and draws player info boxes
+     * @param p The piece that corresponds to this player
+     * @param whichOne Which player number it is
+     * @param height The height of the box
+     * @param root The Pane to add objects to
+     */
     public Player(Piece p, double whichOne, int height, Pane root) {
         super(400, height, 1520, (int) (height * whichOne));
         this.balance = 1500;

@@ -7,8 +7,15 @@ import javafx.scene.canvas.Canvas;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The GameState, contains lists of all game elements
+ */
 public class GameState {
     private Canvas canvas;
+
+    /**
+     * @param cs The Canvas
+     */
     public GameState(Canvas cs) {
         canvas = cs;
     }
@@ -16,12 +23,19 @@ public class GameState {
     private List<Updatable> uList = new ArrayList<Updatable>();
     private List<GameElement> gList = new ArrayList<GameElement>();
 
+    /**
+     * Draws all Renderables
+     */
     public void drawAll() {
         for (Renderable r : rList) {
             r.draw(canvas);
         }
     }
 
+    /**
+     * Adds renderable
+     * @param r A renderable
+     */
     public void addRenderable(Renderable r) {
         rList.add(r);
     }

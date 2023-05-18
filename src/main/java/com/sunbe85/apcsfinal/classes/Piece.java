@@ -6,6 +6,9 @@ import javafx.scene.canvas.Canvas;
 
 import java.io.File;
 
+/**
+ * Not yet fully implemented
+ */
 public class Piece extends GameElement implements Renderable, Updatable {
 
     private final String[] pieceNames = new String[] {"Dog", "Car", "Battleship", "Hat", "Thimble", "Cat", "Wheelbarrow", "Boot"};

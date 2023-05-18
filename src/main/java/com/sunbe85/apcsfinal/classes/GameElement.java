@@ -3,6 +3,9 @@ package com.sunbe85.apcsfinal.classes;
 public abstract class GameElement {
     private double width, height, x, y;
 
+    /**
+     * Default Constructor
+     */
     public GameElement() {
         width = 0;
         height = 0;
@@ -10,6 +13,13 @@ public abstract class GameElement {
         y = 0;
     }
 
+    /**
+     * Constructor, sets instance variables
+     * @param w The width
+     * @param h The height
+     * @param xPos The x position
+     * @param yPos The y position
+     */
     public GameElement(int w, int h, int xPos, int yPos) {
         width = w;
         height = h;

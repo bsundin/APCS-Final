@@ -17,6 +17,9 @@ import java.util.ArrayList;
 import static java.lang.System.out;
 
 
+/**
+ * Establishes the initial game setup dialog box
+ */
 public class GameSetup extends MenuDialog implements Renderable {
 
     ImageView closeBtn;
@@ -31,6 +34,12 @@ public class GameSetup extends MenuDialog implements Renderable {
 
     private final Pane root;
 
+    /**
+     * The constructor for the game setup, renders everything
+     * @param root The Pane
+     * @param piecesInUse Not yet implemented, will be an ArrayList for containing all the pieces currently in use
+     * @param cs The canvas, unused
+     */
     public GameSetup(Pane root, ArrayList<Piece> piecesInUse, Canvas cs) {
         super(500, 700, 710, 190);
         visibleObjects = new ArrayList<>();
@@ -52,10 +61,18 @@ public class GameSetup extends MenuDialog implements Renderable {
         this.root = root;
     }
 
+    /**
+     * @param objects The objects to remove
+     * @param root The Pane to remove those objects from
+     */
     private void remove(ArrayList<Node> objects, Pane root) {
         DrawUtils.remove(objects, root);
     }
 
+    /**
+     * Gets the choice made in the dropdown and updates the player boxes accordingly
+     * @param dropdown The ChoiceBox
+     */
     private void getDropdownChoice(ChoiceBox<String> dropdown) {
         int playerChoice = Integer.parseInt(dropdown.getValue());
         int i = 1;
